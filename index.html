@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Device Aansturen</title>
+    <!-- Koppeling naar het externe CSS-bestand -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>IoT Device Aansturen</h1>
+        <h2>Ultrasone Afstandsmeter</h2>
+
+        <!-- Knoppen voor apparaatbediening en afstand meten -->
+        <div class="button-container">
+            <button id="onButton" class="control-button">Apparaat Aan/Uit</button>
+            <button id="offButton" class="control-button">Afstand Meten</button>
+        </div>
+
+        <!-- Toon de gemeten afstand -->
+        <div id="afstandResultaat">
+            Gemeten afstand: <span id="afstand">-</span> cm
+        </div>
+
+        <!-- Lijst van eerder gemeten afstanden -->
+        <div id="afstandHistorie">
+            <h3>Afstandshistorie</h3>
+            <ul id="historieLijst">
+                <!-- Dynamisch gegenereerde lijst van afstanden komt hier -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Dummy lijst om eerder gemeten afstanden op te slaan
+        let afstandHistorie = [];
+
+        // Stuur verzoek naar de server om het apparaat aan te zetten/uit te zetten
+        document.getElementById('onButton').addEventListener('click', function() {
+            fetch('/iot-device/on', {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Apparaat is aangezet of uitgezet!');
+                } else {
+                    alert('Fout bij het aan/uitzetten van het apparaat.');
+                }
+            })
+            .catch(error => {
+                alert('Er is een probleem opgetreden: ' + error);
+            });
+        });
+
+        // Stuur verzoek naar de server om de afstand te meten
+        document.getElementById('offButton').addEventListener('click', function() {
+            // In dit voorbeeld gebruiken we dummydata
+            const dummyAfstand = Math.floor(Math.random() * 100) + 1; // Genereer een willekeurige afstand tussen 1 en 100 cm
+
+            // Voeg de nieuwe afstand toe aan de lijst
+            afstandHistorie.push(dummyAfstand);
+
+            // Update de gemeten afstand in de weergave
+            document.getElementById('afstand').innerText = dummyAfstand;
+
+            // Update de historie-lijst in de weergave
+            updateHistorieLijst();
+        });
+
+        // Functie om de historie-lijst bij te werken
+        function updateHistorieLijst() {
+            const lijstElement = document.getElementById('historieLijst');
+            lijstElement.innerHTML = ''; // Maak de huidige lijst leeg
+
+            // Loop door alle gemeten afstanden en voeg ze toe aan de lijst
+            afstandHistorie.forEach((afstand, index) => {
+                const lijstItem = document.createElement('li');
+                lijstItem.textContent = `Meting ${index + 1}: ${afstand} cm`;
+                lijstElement.appendChild(lijstItem);
+            });
+        }
+    </script>
+</body>
+</html>

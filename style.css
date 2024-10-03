@@ -1,0 +1,93 @@
+/* Algemene stijl voor de gehele pagina */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('achtergrond2.jpg'); /* Verwijzing naar de afbeelding */
+    background-size: cover; /* Zorgt ervoor dat de afbeelding de hele pagina bedekt */
+    background-position: center; /* Zorgt ervoor dat de afbeelding gecentreerd wordt */
+    background-repeat: no-repeat; /* Voorkomt dat de afbeelding herhaald wordt */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparante witte achtergrond zodat de inhoud leesbaar blijft */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Stijlen voor de knoppen */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.control-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 20px;
+}
+
+.control-button:hover {
+    background-color: #45a049;
+}
+
+/* Stijlen voor de gemeten afstand */
+#afstandResultaat {
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Stijlen voor de afstandshistorie */
+#afstandHistorie {
+    margin-top: 30px;
+    text-align: left;
+}
+
+#historieLijst {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#historieLijst li {
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
